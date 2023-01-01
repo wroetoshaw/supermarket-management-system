@@ -7,9 +7,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+
 
 
 
@@ -77,8 +75,8 @@ techniques, supermarket management can be informatized and modernized.
 
 ### Built With
 
-* [![Node][Node.js]][Node-url]
-* [![EJs][EJs.js]][React-url]
+* [![Node][Node.js]]
+* [![EJs][EJs.js]]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
 
