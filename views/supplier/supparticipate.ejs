@@ -1,0 +1,82 @@
+<%- include("../partials/header.ejs") %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">DOPE MARKET</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link  active" href="/supplier/tenders">Tender Details</a>
+        <a class="nav-link" href="/supplier/tenders/participated">Tenders Participated</a>
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link" href="/logout">Logout</a>
+      </div>
+    </div>
+  </nav>
+  <div class="tender" data="<%=JSON.stringify(tender)%>">
+      
+  </div>
+  <div class="container my-5 border">Time Left: <span id="hours">00</span> : <span id="minutes">00</span> : <span id="seconds">00</span></div>
+  <h1 class="text-center"><%=tender[0].t_name%></h1>
+  <div class="container my-5 border">
+      <form action="/supplier/tenders/<%=tender[0].t_id%>/participate" method="post">
+        <div class="row">
+            <div class="col-md-4">
+               <h4> PRODUCT NAME</h4>
+            </div>
+            <div class="col-md-4">
+                <h4> PRODUCT MRP</h4>
+             </div>
+            <div class="col-md-4">
+                <h4>Price per unit</h4>
+            </div>
+        </div>
+        <%for(let i=0;i<=tender.length-1;i++){%>
+                <div class="row">
+                    <div class="col-md-4">
+                      <%=i+1%>) <%=tender[i].p_name%>
+                    </div>
+                    <div class="col-md-4">
+                        <%=tender[i].p_mrp%>
+                     </div>
+                    <div class="col-md-4 form-group">
+                      <input type="Number" step="any" name="p[p<%=tender[i].p_id%>]">
+                    </div>
+                </div>
+            <%}%>
+            <div class="text-center">
+                <button class="btn btn-outline-success">Submit</button>
+            </div>
+      </form>
+  </div>
+ 
+  
+
+<script>
+  let tender = JSON.parse(document.getElementsByClassName("tender")[0].getAttribute("data"));
+  let hours = document.getElementById("hours");
+  let minutes = document.getElementById("minutes");
+  let seconds = document.getElementById("seconds");
+  let starttime = new Date(tender[0].t_opentime);
+  let closetime = new Date(tender[0].t_closetime);
+  let now;
+  let form = document.getElementsByTagName("form")[0];
+  setInterval(()=>{
+    now= new Date();
+    if(now.getTime()>=closetime.getTime()){
+        form.submit()
+    }else{
+        h=String(Math.floor((closetime.getTime()-now.getTime())/(1000*60*60)));
+        if(h<10) h="0"+h;
+        m=String(Math.floor((closetime.getTime()-now.getTime())/(1000*60))%60);
+        if(m<10) m="0"+m;
+        s=String(Math.floor((closetime.getTime()-now.getTime())/(1000))%60);
+        if(s<10) s="0"+s;
+        hours.innerHTML=h
+        minutes.innerHTML=m
+        seconds.innerHTML=s
+    }
+  },1000)
+</script>
+<%- include("../partials/footer.ejs") %>

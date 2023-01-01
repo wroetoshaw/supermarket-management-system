@@ -1,0 +1,79 @@
+<%- include("../partials/header.ejs") %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">DOPE MARKET</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/manager">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/manager/addproducts">Add Products</a>
+        <a class="nav-link" href="/manager/supdetails">Supplier Details</a>
+        <a class="nav-link" href="/manager/proddetails">Product Details</a>
+        <!-- <a class="nav-link" href="/manager/payments">Payments</a> -->
+        <a class="nav-link active" href="/manager/opentender">Open Tender</a>
+        <a class="nav-link" href="/manager/tender/details">Tender Details</a>
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link" href="/logout">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+<%if(products[0] && count!=0){%>
+  <div class="container my-5">
+    <h1 class="text-center">OPEN A TENDER</h1>
+    <form action="/manager/opentender" method="POST">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label for="name">Tender Name</label>
+          <input type="text" class="form-control" id="name" name="name" value="Tender One" required>
+        </div>
+       </div>
+       <div class="row">
+        <div class="form-group col-md-6">
+          <label for="sd">Start Date</label>
+          <input type="date" class="form-control" id="sd" name="sd" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="st">Start Time</label>
+          <input type="time" class="form-control" id="st" name="st" required>
+        </div>
+       </div>
+       <div class="row">
+        <div class="form-group col-md-6">
+          <label for="ed">End Date</label>
+          <input type="date" class="form-control" id="ed" name="ed" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="et">End Time</label>
+          <input type="time" class="form-control" id="et" name="et" required>
+        </div>
+       </div>
+       <div class="row">
+        <div class="form-group col-md-12">
+            <label for="prod"></label>
+            <select class="form-control" name="products" id="prod" multiple required>
+             <% for(let i =0;i<=products.length-1;i++){%>
+                <option value="<%=products[i].p_id%>" ><%=products[i].p_name%></option>
+              <%}%>
+            </select>
+        </div>
+       </div>
+       <div class="text-center">
+         <button class="btn btn-outline-success">Submit</button>
+       </div>
+    </form>
+  </div>
+
+<%}else{%>
+  <%if(!products[0]){%>
+  <h1 class="text-center my-5" >PLEASE ADD PRODUCTS BEFORE OPENING A TENDER</h1>
+  <%}%>
+  <%if(Number(count)==0){%>
+    <h1 class="text-center my-5" >PLEASE ADD SUPPLIERS BEFORE OPENING A TENDER!!</h1>
+  <%}%>
+<%}%>
+
+
+  <%- include("../partials/footer.ejs") %>

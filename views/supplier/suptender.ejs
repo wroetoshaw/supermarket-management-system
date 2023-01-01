@@ -1,0 +1,90 @@
+<%- include("../partials/header.ejs") %>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">DOPE MARKET</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link  active" href="/supplier/responsess">responses Details</a>
+        <a class="nav-link" href="/supplier/responsess/participated">responsess Participated</a>
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link" href="/logout">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+      <h1>responses Details</h1>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>responses Name: </h3>
+        </div>
+          <div class="col-md-6">
+              <h3><%=responses[0].t_name%></h3>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>responses Name: </h3>
+        </div>
+          <div class="col-md-6">
+              <h3><%=responses[0].t_name%></h3>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Start Time: </h3>
+        </div>
+          <div class="col-md-6">
+              <h3><%=responses[0].t_opentime.toISOString()%></h3>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>End Time: </h3>
+        </div>
+          <div class="col-md-6">
+              <h3><%=responses[0].t_closetime.toISOString()%></h3>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Created Time: </h3>
+        </div>
+          <div class="col-md-6">
+              <h3><%=responses[0].t_created%></h3>
+          </div>
+      </div>
+      <hr>
+      <h2 class="my-5">PRODUCTS AND YOUR QUOTES</h2>
+      <div class="row">
+        <div class="col-md-4">
+            <h3>PRODUCT NAME</h3>
+        </div>
+        <div class="col-md-4">
+            <h3>PRODUCT MRP (In Rs)</h3>
+        </div>
+        <div class="col-md-4">
+          <h3>YOUR QUOTE (In Rs)</h3>
+      </div>
+    </div>
+     <% for(x in responses){%>
+          <div class="row">
+              <div class="col-md-4">
+                  <h3><%=responses[x].p_name%></h3>
+              </div>
+              <div class="col-md-4">
+                  <h3><%=responses[x].p_mrp%></h3>
+              </div>
+              <div class="col-md-4">
+                <h3><%=responses[x].cost%></h3>
+            </div>
+          </div>
+      <%}%>
+
+
+      <%- include("../partials/footer.ejs") %>

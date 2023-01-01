@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="/css/landing/bundle.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/landing/pagepiping.css" type="text/css">
+    <link rel="stylesheet" href="/css/landing/tootik.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/landing/landing.css" type="text/css">
+
+
+    <link rel="stylesheet" href="/css/login/login.css" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </head>
+  <body>
+  
+      <!-- START HEADER -->
+      <div class="wrap_container cursor-light">
+          <div class="main_container">
+              <div class="side_nav">
+                  <div class="my-sticky-nav">
+                      <div class="side_menu">
+                          <div id="my_tog" class="my_tog link" onmouseover="my_click();">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                          </div>
+                          <div>
+                          </div>
+                          <!-- Sticky Nav -->
+                          <nav class="side-nav-menu">
+                              <ul class="nav-menu nav-fill" id="menu">
+                                  <li class="nav-item">
+                                      <a data-menuanchor="home-banner" class="nav-link link active line" href="/landing">Home </a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a data-menuanchor="all-products" class="nav-link link line" href="/login">Employee Login</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a data-menuanchor="reviews" class="nav-link link line" href="/supplier/login">Supplier Login</a>
+                                  </li>
+                              </ul>
+                          </nav>
+                      </div>
+                  </div>
+              </div>
+              <!-- Nav-Bar -->
+              <header id="home">
+                  <nav class="navbar navbar-light bg-light cursor-light d-md-none">
+                      <div class="my_nav_tog d-block d-md-none">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                      </div>
+                  </nav>
+                  <div class="broad">
+                      <span class="btn-close" id="btn_sideNavClose"><i></i><i></i></span>
+                      <nav class="side-nav-menu">
+  
+                          <ul class="nav-menu nav-fill">
+                              <li class="nav-item">
+                                  <a class="nav-link" href="/landing">Home</a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="nav-link" href="/login">Employee Login</a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="nav-link" href="/supplier/login">Supplier Login</a>
+                              </li>
+                          </ul>
+                      </nav>
+                  </div>
+              </header>
+          </div>
+      </div>
+      <!-- END HEADER -->
+      
+    <section class="section slide1 p-0" id="home-banner">
+      <div class="slider-area" id="slider-area">
+        <div class="container">
+          <div class="screen">
+           <div class="screen__content">
+            <form class="login" action = "/login" method="post">
+              <div class="login__field">
+                <input class="login__input"  placeholder="Username" type="text" name="username" id="username">
+              </div>
+              <div class="login__field">
+                <input class="login__input" placeholder="Password" type="password" name="password" id="password">
+              </div>
+              <button type="submit" class="btn btn-medium btn-rounded btn-trans text-capitalize mt-3 mb-5 mb-md-2 mr-3 content1 wow">LOGIN</button>
+              <div class="social-login">
+                <h4>Employee</h4>
+              </div>			
+            </form>
+          </div>
+          <div class="screen__background">
+            <span class="screen__background__shape screen__background__shape4"></span>
+            <span class="screen__background__shape screen__background__shape3"></span>		
+            <span class="screen__background__shape screen__background__shape2"></span>
+            <span class="screen__background__shape screen__background__shape1"></span>
+          </div>		
+        </div>
+      </div>
+      </div>
+  </section>
+
+<!-- END BANNER -->
+<%- include("../partials/footer.ejs") %>
+  </body>
+</html>

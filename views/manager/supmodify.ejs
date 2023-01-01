@@ -1,0 +1,70 @@
+<%-include("../partials/header.ejs")%>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">DOPE MARKET</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-link active" href="/manager">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-link" href="/manager/addproducts">Add Products</a>
+      <a class="nav-link" href="/manager/supdetails">Supplier Details</a>
+      <a class="nav-link" href="/manager/proddetails">Product Details</a>
+      <!-- <a class="nav-link" href="/manager/payments">Payments</a> -->
+      <a class="nav-link" href="/manager/opentender">Open Tender</a>
+      <a class="nav-link" href="/manager/tender/details">Tender Details</a>
+    </div>
+    <div class="navbar-nav">
+      <a class="nav-link" href="/logout">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <h1 class="text-center my-4">MODIFY SUPPLIER</h1>
+    <hr>
+    <form action="/manager/supdetails/<%=supplier[0].su_id%>/modify?_method=patch" method="post">
+    <div class="container">
+      <div class="row">
+        <div class="form-group col-md-6">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="<%=supplier[0].su_name%>">
+          </div>
+          <div class="form-group col-md-6">
+        <label for="mobileno">MobileNo</label>
+        <input type="text" class="form-control" id="mobileno" name="mobileno" value="<%=supplier[0].su_mobileno%>">
+      </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-md-12">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" class="form-control" value="<%=supplier[0].su_email%>">
+          </div>
+      </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="address">address:</label>
+        <input type="text" name="address" id="address" class="form-control" value="<%=supplier[0].su_address%>">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="u">Username:</label>
+        <input type="text" name="username" id="u" class="form-control">
+      </div>
+      <div class="form-group col-md-12">
+        <label for="p">Password:</label>
+        <input type="password" name="password" id="p" class="form-control">
+      </div>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-large btn-outline-success">Submit</button>
+    </div>
+  
+    </div>
+  
+    </form>
+    </div>
+
+
+<%- include("../partials/footer.ejs") %>

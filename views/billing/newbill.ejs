@@ -1,0 +1,287 @@
+<%-include("../partials/header.ejs")%>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">DOPE MARKET</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-link active" href="/billing">Home <span class="sr-only">(current)</span></a>
+      <!-- <a class="nav-link" href="/admin/transactions">Transactions</a> -->
+    </div>
+    <div class="navbar-nav">
+      <a class="nav-link" href="/logout">Logout</a>
+    </div>
+  </div>
+</nav>
+<div style="display:none;" id="none" data="<%=JSON.stringify(products)%>">
+
+</div>
+ <div class="container-fluid my-5">
+     <div class="row">
+         <div class="col-md-4 container-fluid border">
+           <div class="row col-md-12 text-center">
+            <h5>ADD PRODUCTS</h5>
+           </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <input type="text" id="p"  placeholder="product">
+                </div>
+                <div class="col-md-5">
+                    <input type="number" id="q" placeholder="quantity">
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-outline-success" id="add">ADD</button>
+                </div>
+            </div>
+            <!-- <div class="row" style="display:none" id="display"> -->
+                <div  class="row col-md-5" id="display" style="box-shadow:1px 1px 10px rgba(0,0,0,0.6);position:relative;top:-8px;">
+            </div>
+            <!-- <div class="row">
+                <div class="co-md-12">
+                    <div id="products"></div>
+                </div>
+            </div> -->
+         </div>
+         <div class="col-md-8 container" style="height:500px;">
+            <h1 class="text-center">BILL</h1>
+            <div class="row">
+                <div class="col-md-1">SL. NO.</div>
+                <div class="col-md-4">PRODUCT NAME</div>
+                <div class="col-md-2">QUANTITY</div>
+                <div class="col-md-2">PRICE PER UNIT</div>
+                <div class="col-md-1">TOTAL</div>
+                <div class="col-md-1">OPERATION</div>
+            </div>
+            <form action="/billing/newbill" method="post" style="height:71%;" id="fo">
+                <div id="main" style="overflow: scroll;height:60%;margin: 0;">
+                </div>
+                <div class="row border px-5">
+                    <div class="col-md-8 text-center mx-5">
+                        <div class="row form-group" >
+                            <label for="amount">Amount</label>
+                            <input type="number" step="any" name="amount" id="amount" class="form-control" readonly value="0">
+                        </div>
+                        <div class="row">
+                         <label for="cr">Credits</label>
+                         <input type="number" step="any" name="credits" id="cr" class="form-control" readonly value="0">
+                     </div>
+                     <div class="row form-group">
+                         <label for="famount">Final Amount</label>
+                         <input type="number" step="any" name="famount" id="famount"  class="form-control" readonly value="0">
+                     </div>
+                     <div class="row">
+                         <select name="mop" id="" class="form-control">
+                             <option value="cash">CASH</option>
+                             <option value="card">CARD</option>
+                             <option value="upi">UPI</option>
+                             <option value="wallets">Wallets</option>
+                         </select>
+                     </div>
+                    </div>
+                   
+                 </div>
+                 
+                <div class="text-center">
+                 <button class="btn btn-outline-success" id="proceed">PROCEED</button>
+                </div>
+             </form>
+          </div>
+      </div>
+  </div>
+ 
+  <script>
+  const products = JSON.parse($("#none").attr("data"));
+  console.log(products);
+  const pinput = $("#p");
+  const display = $("#display");
+  const quantity = $("#q");
+  const add = $("#add");
+  const main = $("#main");
+  const amount = $("#amount");
+  const famount = $("#famount");
+  const submit = $("#proceed");
+  const credits = $("#credits");
+  const addcredits=$("#addcreds");
+  const finalcreds = $("#cr");
+ const form = document.getElementById("fo");
+ let points = Number($("#pts").text());
+ const showpoints = $("#showpts");
+ showpoints.text(points);
+ 
+ 
+ submit.on("click",(e)=>{
+     e.preventDefault();
+     console.log("length",main.children().length)
+     if(Number(main.children().length)>0){
+         form.submit();
+     }
+ })
+ 
+ 
+ addcredits.on("click",(e)=>{
+     console.log("clicked")
+     const value = Number(credits.val());
+     if(value>0 && Number(main.children().length)>0 && (Number(famount.val())>value) && value<=points){
+      finalcreds.val(value);
+      famount.val(Number(famount.val())-value);
+      credits.val("");
+      points-=value;
+      showpoints.text(points)
+      credits.attr("max",points);
+      
+      
+ 
+     }
+ })
+ 
+ 
+  pinput.keyup((e)=>{
+     let a = pinput.val();
+     if(a==""){
+         display.css("display","none");
+     }else{
+     display.html("");
+     for(x in products){
+        if(products[x].p_name.indexOf(a)!=-1 && products[x].stock_avail>0){
+            display.append(createRow(products[x]));
+        }
+     }
+         display.css("display","block");
+     }
+     });
+ 
+ $("#display").on("click",".hover",(e)=>{
+     console.log("CALLED")
+    let element = e.target;
+    console.log(element);
+   console.log(element.textContent)
+    pinput.val(element.textContent);
+    pinput.attr("data-product",element.getAttribute("data-product"))
+    display.css("display","none");
+    console.log(Number(element.getAttribute("data")))
+    quantity.attr("max",Number(element.getAttribute("data")))
+    console.log(quantity.attr("max"))
+ 
+ 
+ })
+ 
+ 
+ main.on("click",".delete",(e)=>{
+     e.preventDefault();
+     console.log(e.target.parentNode.parentNode.childNodes[5].childNodes[1].value);
+  
+     const value = Number(e.target.getAttribute("data-total"));
+     let parent = e.target.parentNode.parentNode;
+     let quantity = Number(e.target.parentNode.parentNode.childNodes[5].childNodes[1].value);
+     console.log(quantity);
+     id=Number(e.target.parentNode.parentNode.childNodes[5].childNodes[1].getAttribute("data"));
+     for(x in products){
+         if(products[x].p_id==id){
+             products[x].stock_avail+=quantity
+             console.log(products[x]);
+         }
+     }
+ 
+    
+     parent.remove();
+     amount.val(Number(amount.val())-Number(value)); //adding to amount!!!
+     famount.val(Number(famount.val()-Number(value)));
+ })
+ 
+ let old;
+ main.on("click",".quants",(e)=>{
+     old = Number(e.target.value);
+     console.log(old)
+     
+ })
+ main.on("change",".quants",(e)=>{
+     let value = Number(e.target.value);
+     let id = Number(e.target.getAttribute("data"));
+     let index;
+     for(x in products){
+      if(products[x].p_id==id){
+          index=x;
+      }
+     }
+     console.log(value,old,products[index])
+     if(value<old){
+        products[index].stock_avail+=(old-value);
+     }else{
+         products[index].stock_avail+=(value-old);
+     }
+     console.log("value: ",products[index].stock_avail)
+ })
+ 
+ add.on("click",(e)=>{
+     console.log("clickedddd")
+     if(Number(quantity.val())<=Number(quantity.attr("max")) && quantity.val()!=0){
+     const product = JSON.parse(pinput.attr("data-product"));
+     pinput.val("");
+     for(x in products){
+         if(products[x].p_id==product.p_id){
+             products[x].stock_avail-=quantity.val();
+             console.log("value: ",products[x].stock_avail)
+         }
+     }
+     createItem(product,quantity.val());
+     amount.val(Number(amount.val())+Number((product.p_mrp*quantity.val()))); //adding to amount!!!
+     famount.val(Number(famount.val())+Number((product.p_mrp*quantity.val())));
+     quantity.val("");
+     }
+  
+ })
+ 
+ 
+ 
+ function createRow(p){
+  const div = document.createElement("div");
+  div.classList.add("col-md-6");
+  div.innerHTML=p.p_name;
+  div.setAttribute("data",p.stock_avail);
+  div.classList.add("hover")
+  div.setAttribute("data-product",JSON.stringify(p))
+  return div;
+ }
+ 
+ function createItem(p,q){
+    let children = main.children()
+    let qty;
+   for(let x=1;x<=children.prevObject[0].childNodes.length-1;x++){
+    if(children.length>0){
+        if(children.prevObject[0].childNodes[x].childNodes[3].childNodes[1].value==p.p_name){
+        qty = children.prevObject[0].childNodes[x].childNodes[5].childNodes[1];
+        qty.value=Number(qty.value)+Number(q);
+        return
+    }
+     
+    }
+   }
+    let row = document.createElement("div");
+    index = children.length;
+    row.classList.add("row");
+    console.log(p.p_id);
+    row.innerHTML=`
+    <div class="col-md-1">${index+1}</div>
+    <div class="col-md-4">
+     <input readonly type="text" name='p[i${p.p_id}]' value='${p.p_name}'> 
+     </div>
+    <div class="col-md-2">
+     <input type="number" name="q[${p.p_id}]" class="quants" max="${p.stock_avail}" value="${q}" data="${p.p_id}"style="width:100%;">
+     </div>
+    <div class="col-md-2">${p.p_mrp}</div>
+    <div class="col-md-1">${p.p_mrp*q}</div>
+    <div class="col-md-1">
+     <button class="btn btn-outline-danger delete" data-total="${p.p_mrp*q}" data="${q}">DELETE</button>
+     </div>
+ 
+    `
+    main.append(row);
+ 
+ }
+ 
+ 
+ 
+ 
+  </script>
+   <%-include("../partials/footer.ejs")%>

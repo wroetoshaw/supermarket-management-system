@@ -1,0 +1,168 @@
+<%- include("../partials/header.ejs") %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">DOPE MARKET</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/manager">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/manager/addproducts">Add Products</a>
+        <a class="nav-link" href="/manager/supdetails">Supplier Details</a>
+        <a class="nav-link" href="/manager/proddetails">Product Details</a>
+        <a class="nav-link" href="/manager/payments">Payments</a>
+        <a class="nav-link" href="/manager/opentender">Open Tender</a>
+        <a class="nav-link  active" href="/manager/tender/details">Tender Details</a>
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link" href="/logout">Logout</a>
+      </div>
+    </div>
+  </nav>
+<div class="container">
+    <h1 class="my-5">Tender Details</h1>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Tender Name: </h3>
+        </div>
+          <div class="col-md-6">
+              <h3><%=tender[0].t_name%></h3>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Tender Name: </h3>
+        </div>
+          <div class="col-md-6">
+              <h3><%=tender[0].t_name%></h3>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Start Time: </h3>
+        </div>
+          <div class="col-md-6">
+              <h3><%=tender[0].t_opentime.toISOString()%></h3>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>End Time: </h3>
+        </div>
+          <div class="col-md-6">
+              <h3><%=tender[0].t_closetime.toISOString()%></h3>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <h3>Created Time: </h3>
+        </div>
+          <div class="col-md-6">
+              <h3><%=tender[0].t_created%></h3>
+          </div>
+      </div>
+      <hr>
+     <% if(tender[0].t_status!="selected"  && result.length!=0){%>
+        <div class=" text-center my-5">
+          <form action="/manager/tender/<%=tender[0].t_id%>/submit?_method=PATCH" method="post">
+             <button class="btn btn-outline-success">SUBMIT</button>
+          </form>
+        </div>
+      <%}%>
+      <%if( result.length!=0){%>
+        <div class="my-5 row " style="border-top:1px black solid">
+          <div class="col-md-6">
+              <h1 class="my-2">
+                PRODUCT NAME
+              </h1>
+          </div>
+          <div class="col-md-6">
+           <h1 class="my-2">
+             PRODUCT MRP
+           </h1>
+       </div>
+      </div>
+        <%for(x in result){%>
+          <%if(x==0 || result[x].p_id!=result[x-1].p_id){%>
+              <div class="my-5 row " style="border-top:1px black solid">
+                  <div class="col-md-6">
+                      <h1 class="my-2">
+                        <%=result[x].p_name%>
+                      </h1>
+                  </div>
+                  <div class="col-md-6">
+                   <h1 class="my-2">
+                     <%=result[x].p_mrp%>
+                   </h1>
+               </div>
+              </div>
+              <%if(tender[0].status=="selected"){%>
+               <h4 class="text center">RESULT</h4>
+               <div class="row " style="border:1px balck solid">
+                   <div class="col-md-6">
+                       <h1 class="my-2">
+                         <%=result[x].su_id%>
+                       </h1>
+                   </div>
+                   <div class="col-md-6">
+                    <h1 class="my-2">
+                      <%=result[x].pc_perunit%>
+                    </h1>
+                </div>
+               </div>
+              <%}%>
+          <%}%>
+          <div class="row my-5">
+              <div class="col-md-4">
+                  <h4><%=result[x].su_name%></h4>
+              </div>
+              <div class="col-md-4">
+               <h4><%=result[x].cost%></h4>
+              </div>
+             <% if(tender[0].status!="selected" && !result[x].pc_perunit){%>
+               <div class="col-md-4 ">
+                 <form action="/manager/tender/<%=tender[0].t_id%>/results?_method=PATCH" method="POST" class="<%=result[x].p_id%>">
+                    <div style="display:none">
+                        <input type="text" name="supplier" value="<%=result[x].su_id%>">
+                        <input type="text" name="product" value="<%=result[x].p_id%>">
+                        <input type="text" name="cost" value="<%=result[x].cost%>">
+                    </div>
+                    <button class="btn btn-outline-success select">SELECT</button>
+                </form>
+              </div>
+              <%}%>
+          </div>
+         <%}%>
+     <% }else{%>
+        <h3>NO ONE PARTICIPATED</h3>
+     <% }%>
+      
+      <%if(tender[0].t_status!="selected" &&  result.length!=0){%>
+        <div class=" text-center my-5">
+          <form action="/manager/tender/<%=tender[0].t_id%>/submit?_method=PATCH" method="post">
+             <button class="btn btn-outline-success">SUBMIT</button>
+          </form>
+        </div>
+      <%}%>
+</div>
+
+<script>
+  let buttons = document.getElementsByClassName("select");
+  let forms = document.getElementsByTagName("form");
+  if(buttons.length!=0){
+    for(x in buttons){
+     buttons[x].addEventListener("click",(e)=>{
+       let element = e.target;
+       let parent = element.parentNode;
+       let c = parent.classList.item(0);
+       for(y in forms){
+         if(forms[y].classList.contains(c)){
+            forms[y].style.display="none";
+         }
+       }
+     })
+  }
+  }
+</script>
+
+<%-include("../partials/footer.ejs") %>

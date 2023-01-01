@@ -1,0 +1,61 @@
+<%-include("../partials/header.ejs")%>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">DOPE MARKET</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-link active" href="/billing">Home <span class="sr-only">(current)</span></a>
+      <!-- <a class="nav-link" href="/admin/transactions">Transactions</a> -->
+    </div>
+    <div class="navbar-nav">
+      <a class="nav-link" href="/logout">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-5">
+    <h2 class="text-center my-5">ADD A NEW CUSTOMER</h2>
+    <form action="/billing/newcustomer" method="POST" class="my-5">
+        <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="n">Name</label>
+              <input type="text" name="c[0]" class="form-control" id="n">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 d-flex justify-content-around">
+              <div class="col-md-6  form-group ">
+                <label for="f">Female</label>
+                <input type="radio" name="c[1]" class="form-control" id="f" value="F">
+              </div>
+             <div class="col-md-6 form-group ">
+                <label for="m">Male</label>
+                <input type="radio" name="c[1]" class="form-control" id="m" value="M">
+             </div>
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="a">Age</label>
+                <input type="number" name="c[3]" class="form-control" id="a">
+              </div>
+            <div class="col-md-4 form-group">
+                <label for="mo">Mobile Number</label>
+                <input type="number" name="c[4]" class="form-control" id="mo">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label for="ad">Address</label>
+                <textarea name="c[2]" id="ad" cols="30" rows="4" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="text-center my-5">
+            <button class="btn btn-outline-success">Submit</button>
+        </div>
+    </form>
+</div>
+
+
+
+<%-include("../partials/footer.ejs")%>

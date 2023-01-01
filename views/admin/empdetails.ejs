@@ -1,0 +1,32 @@
+<%-include("../partials/header.ejs")%>
+<%-include("../partials/adminnav.ejs") %>
+
+<div class="text-center my-5"><h1>EMPLOYEE DETAILS</h1></div>
+<div class="container my-5">
+<div class="divTable paleBlueRows">
+  <%for(x in result){%>
+  <div class="divTableBody">
+  <div class="divTableRow">
+    <div class="divTableCell"> <%=Number(x)+1%>.</div>
+
+  <div class="divTableCell"><%=result[x].emp_name%></div>
+  <div class="divTableCell"><a href="/admin/empdetails/<%=result[x].emp_id%>/view">VIEW</a></div>
+  <div class="divTableCell"><a href="/admin/empdetails/<%=result[x].emp_id%>/modify"><button class="btn btn-small btn-rounded btn-trans text-capitalize mt-1 mb-5 mb-md-2 content1 wow">MODIFY</button></a></div>
+  <%if(result[x].username==null){%>
+    <div class="divTableCell"><a href="/admin/empdetails/<%=result[x].emp_id%>/addcreds">ADD CREDS</a></div>
+    <%}else{%>
+      <div class="divTableCell"></div>
+     <%}%>
+
+  <div class="divTableCell"><form action="/admin/empdetails/<%=result[x].emp_id%>/delete?_method=delete" method="post">
+    <button class="btn btn-small btn-rounded btn-trans text-capitalize mt-1 mb-5 mb-md-2 content1 wow">DELETE</button>
+   </form></div>
+  </div>
+  </div> <%}%>
+  </div>
+ 
+
+</div>
+
+
+  <%- include("../partials/footer.ejs") %>

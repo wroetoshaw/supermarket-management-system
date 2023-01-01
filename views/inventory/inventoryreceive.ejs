@@ -1,0 +1,61 @@
+<%-include("../partials/header.ejs")%>
+<%-include("../partials/inventorynav.ejs")%>
+
+    <section class="section slide1 p-0" id="home-banner">
+    <div class="slider-area" id="slider-area">
+        <div class="bg-overlay bg-green opacity-8"></div>
+        <div class="container my-5">
+            <h2 class="text-center my-5"> PRODUCTS RECEIVED</h2>
+            <%if(products.length==0){%>
+                <h5 class="text-center my-5">NO PRODUCTS!!!</h5>
+            <%}else{%>
+                <div class="row my-2">
+                    <div class="col-md-3">
+                        <h6>PRODUCT NAME</h6>
+                    </div>
+                    <div class="col-md-2">
+                       <h6>PRODUCT STOCKAVAIL</h6>
+                   </div>
+                   <div class="col-md-1">
+                       <h6>MIN. QTY.</h6>
+                   </div>
+                   <div class="col-md-4">
+                       <h6>QTY. ORDERED</h6>
+                   </div>
+                   <div class="col-md-2">
+                      
+                   </div>
+                </div>
+                <hr>
+                <% for(x in products){%>
+                    <form action="/inventory/receive" method="post">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4><%=products[x].p_name%></h4>
+                            </div>
+                            <div class="col-md-2">
+                               <h4><%=products[x].stock_avail%></h4>
+                           </div>
+                           <div class="col-md-1">
+                               <h4><%=products[x].min_qty%></h4>
+                           </div>
+                           <div class="col-md-4">
+                               <input type="number" name="<%=products[x].p_id%>" value="<%=obj[products[x].p_id]%>">
+                           </div>
+                           <div class="col-md-2">
+                               <button class="btn btn-outline-success ls">RECEIVED</button>
+                           </div>
+                        </div>
+                       </form>
+                    <%}%>
+            <%}%>
+        </div>
+</div>
+</section>
+
+
+<script>
+
+</script>
+
+<%-include("../partials/footer.ejs")%>

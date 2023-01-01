@@ -1,0 +1,56 @@
+<%-include("../partials/header.ejs")%>
+<%-include("../partials/inventorynav.ejs")%>
+
+
+<div class="container my-5">
+    <h2 class="text-center my-5"> PRODUCTS WITH LOW QUANTITY</h2>
+    <%if(products.length==0){%>
+        <h5 class="text-center my-5">NO PRODUCTS!!!</h5>
+    <%}else{%>
+        <div class="row my-2">
+            <div class="col-md-3">
+                <h6>PRODUCT NAME</h6>
+            </div>
+            <div class="col-md-2">
+               <h6>PRODUCT STOCKAVAIL</h6>
+           </div>
+           <div class="col-md-1">
+               <h6>MIN. QTY.</h6>
+           </div>
+           <div class="col-md-4">
+               <h6>QTY. ORDER</h6>
+           </div>
+           <div class="col-md-2">
+              
+           </div>
+        </div>
+        <hr>
+        <% for(x in products){%>
+            <form action="/inventory" method="post">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4><%=products[x].p_name%></h4>
+                    </div>
+                    <div class="col-md-2">
+                       <h4><%=products[x].stock_avail%></h4>
+                   </div>
+                   <div class="col-md-1">
+                       <h4><%=products[x].min_qty%></h4>
+                   </div>
+                   <div class="col-md-4">
+                       <input type="number" min="<%=products[x].min_qty%>" name="<%=products[x].p_id%>">
+                   </div>
+                   <div class="col-md-2">
+                       <button class="btn btn-outline-success">ORDER</button>
+                   </div>
+                </div>
+               </form> 
+            <%}%>
+    <%}%>
+    
+   
+</div>
+
+
+
+<%-include("../partials/footer.ejs")%>

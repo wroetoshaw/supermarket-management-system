@@ -1,0 +1,33 @@
+<%-include("../partials/header.ejs")%>
+<%-include("../partials/adminnav.ejs") %>
+
+
+<div class="container-fluid my-5">
+    <h2 class="text-center my-5">CUSTOMERS</h2>
+    <div class="row my-5">
+        <div class="col-md-1"><h5>SL.NO</h5></div>
+        <div class="col-md-2"><h5>NAME</h5></div>
+        <div class="col-md-1"><h5>CREDITS AVAIL.</h5></div>
+        <div class="col-md-1"><h5>GENDER</h5></div>
+        <div class="col-md-2"><h5>MOBILENO.</h5></div>
+        <div class="col-md-1"><h5>AGE</h5></div>
+        <div class="col-md-2"><h5>ADDRESS</h5></div>
+    </div>
+    <%if(result.length!=0){%>
+        <%for(let i=0;i<=result.length-1;i++){%>
+                   <div class="row my-3">
+                       <div class="col-md-1"><%=i+1%>)</div>
+                       <div class="col-md-2"><%=result[i].c_name%></div>
+                       <div class="col-md-1"><%=result[i].c_pts%></div>
+                       <div class="col-md-1"><%=result[i].c_gender%></div>
+                       <div class="col-md-2"><%=result[i].c_mobileno%></div>
+                       <div class="col-md-1"><%=result[i].c_age%></div>
+                       <div class="col-md-2"><%=result[i].c_address%></div>
+                   </div>
+            <%}%>
+    <%}else{%>
+          <h4 class="text-center my-5">NO CUSTOMER YET!!</h4>
+    <%}%>
+</div>
+
+<%- include("../partials/footer.ejs") %>

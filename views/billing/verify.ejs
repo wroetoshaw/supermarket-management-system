@@ -1,0 +1,56 @@
+<%-include("../partials/header.ejs")%>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">DOPE MARKET</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-link active" href="/billing">Home <span class="sr-only">(current)</span></a>
+      <!-- <a class="nav-link" href="/admin/transactions">Transactions</a> -->
+    </div>
+    <div class="navbar-nav">
+      <a class="nav-link" href="/logout">Logout</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <div class="row text-center my-5">
+        <form action="/billing/newcustomer/<%=id%>/verify" method="POST">
+            <div class="row form-group">
+            <label for="a">Mobile Number</label>
+            <input type="number" value="<%=mobile%>" class="form-control" name="a"disabled>
+            </div>
+            <div class="row form-group">
+                <label for="key">Verification code</label>
+                <input type="text" class="form-control" id="key" name="key">
+                </div>
+            <div class="text-center">
+                <button class="btn btn-outline-success">Submit</button>
+            </div>
+        </form>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="/billing/newcustomer/<%=id%>/change?_method=PATCH" method="POST">
+               <div class="row form-group">
+                <label for="c">Mobile Number</label>
+                <input type="number" name="mobile" class="form-control" name="c">
+               </div>
+               <div class="text-center">
+                <button class="btn btn-outline-success">CHANGE</button>
+               </div>
+            </form>
+            
+        </div>
+        <div class="col-md-6 text-center">
+            <a href="/billing/counter">
+                GO TO BILLING
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<%-include("../partials/footer.ejs")%>

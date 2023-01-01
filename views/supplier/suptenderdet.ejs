@@ -1,0 +1,263 @@
+<%-include("../partials/header.ejs")%>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="90">
+
+  <!-- START LOADER -->
+  <div class="loader-bg">
+      <div id="container">
+          <svg viewBox="0 0 100 100">
+              <defs>
+                  <filter id="shadow">
+                      <feDropShadow dx="0" dy="0" stdDeviation="0.5"
+                                    flood-color="#dabd1d"/>
+                  </filter>
+              </defs>
+              <circle id="spinner" style="fill:transparent;stroke:#ed2d34;stroke-width: 8px;stroke-linecap: round;filter:url(#shadow);" cx="50" cy="50" r="45"/>
+          </svg>
+      </div>
+  </div>
+  <!-- END LOADER -->
+  
+  <!-- START HEADER -->
+  <div class="wrap_container cursor-light">
+    <div class="main_container">
+      <div class="side_nav">
+          <div class="my-sticky-nav">
+              <div class="side_menu">
+                  <div id="my_tog" class="my_tog link" onmouseover="my_click();">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                  </div>
+                  <div>
+                  </div>
+                  <nav class="side-nav-menu">
+                      <ul class="nav-menu nav-fill" id="menu">
+                          <li class="nav-item">
+                              <a data-menuanchor="home-banner" class="nav-link link active line" href="/landing">Home </a>
+                          </li>
+                          <li class="nav-item">
+                              <a data-menuanchor="all-products" class="nav-link link line" href="/supplier/tenders">Tender Details</a>
+                          </li>
+                          <li class="nav-item">
+                              <a data-menuanchor="reviews" class="nav-link link line" href="/supplier/tenders/participated">Tenders Participated</a>
+                          </li>
+                          <li class="nav-item">
+                            <a data-menuanchor="reviews" class="nav-link link line" href="/logout">Logout</a>
+                        </li>
+                      </ul>
+                  </nav>
+              </div>
+          </div>
+      </div>
+      <header id="home">
+          <nav class="navbar navbar-light bg-light cursor-light d-md-none">
+              <div class="my_nav_tog d-block d-md-none">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </div>
+          </nav>
+          <div class="broad">
+              <span class="btn-close" id="btn_sideNavClose"><i></i><i></i></span>
+              <nav class="side-nav-menu">
+
+                  <ul class="nav-menu nav-fill">
+                      <li class="nav-item">
+                          <a class="nav-link" href="/landing">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/supplier/tenders">Tender Details</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/supplier/tenders/participated">Tenders Participated</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                  </ul>
+              </nav>
+          </div>
+      </header>
+  </div>
+    </div>
+    
+    <div id="pagepiling">
+    
+    
+    <section class="section slide1 p-0" id="home-banner">
+      <div class="slider-area" id="slider-area">
+          <div class="bg-overlay bg-green opacity-8"></div>
+          <div class="container my-5">
+            <h1 class="text-center my-5">UPCOMING TENDERS!!!</h1>
+            <%let i=0;%>
+            <%for(let x in tenders){%>
+             <%  if(tenders[x].t_status=="upcoming"){%>
+                 <div class="row">
+                     <div class="col-md-3">
+                         <h4><%=tenders[x].t_name%></h4>
+                     </div>
+                     <div class="col-md-3">
+                            <h4>Start Time: <%=tenders[x].t_opentime.toISOString()%></h4>
+                     </div>
+                         <div class="col-md-3">
+                          <h4>End Time: <%=tenders[x].t_closetime.toISOString()%></h4>
+                       </div>
+                       <div class="col-md-3">
+                         <a href="/supplier/tenders/<%=tenders[x].t_id%>/details" class="btn btn-outline-success">Details</a>
+                      </div>
+                       
+                     </div>
+         
+                 <%i=1;%>
+               <%}%>
+           <% } if(i==0){%>
+                <h1 class="text-center">
+                    NO UPCOMING TENDERS!!
+                </h1>
+            <%}%>
+           </div>
+    </div>
+    </section>
+
+    <section class="section slide1 p-0" id="home-banner">
+      <div class="slider-area" id="slider-area">
+          <div class="bg-overlay bg-green opacity-8"></div>
+          <div class="container my-5">
+            <h1 class="text-center my-5">ONGOING TENDERS!!!</h1>
+            <%i=0;%>
+            <%for(let x in tenders){%>
+             <%  if(tenders[x].t_status=="open"){%>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4><%=tenders[x].t_name%></h4>
+                    </div>
+                    <div class="col-md-3">
+                           <h4>Start Time: <%=tenders[x].t_opentime.toISOString()%></h4>
+                    </div>
+                        <div class="col-md-3">
+                         <h4>End Time: <%=tenders[x].t_closetime.toISOString()%></h4>
+                      </div>
+                      <div class="col-md-3">
+                        <a href="/supplier/tenders/<%=tenders[x].t_id%>/participate" class="btn btn-outline-success">Participate</a>
+                     </div>
+                      
+                    </div>
+                 <%i=1;%>
+               <%}%>
+           <% } if(i==0){%>
+                <h1 class="text-center">
+                    NO ONGOING TENDERS!!
+                </h1>
+            <%}%>
+           </div>
+    </div>
+    </section>
+    
+    <section class="section slide5 contact-sec" id="contact">
+      <div class="container expand-container">
+        <div class="container my-5">
+          <h1 class="text-center my-5">CLOSED TENDERS!!!</h1>
+          <%i=0;%>
+          <%for(let x in tenders){%>
+           <%  if(tenders[x].t_status=="closed"){%>
+              <div class="row">
+                  <div class="col-md-3">
+                      <h4><%=tenders[x].t_name%></h4>
+                  </div>
+                  <div class="col-md-3">
+                         <h4>Start Time: <%=tenders[x].t_opentime.toISOString()%></h4>
+                  </div>
+                      <div class="col-md-3">
+                       <h4>End Time: <%=tenders[x].t_closetime.toISOString()%></h4>
+                    </div>
+                  <%if(tenders[x].status=="selected"){%>
+                    <div class="col-md-3">
+                      <a href="/supplier/tenders/<%=tenders[x].t_id%>/results" class="btn btn-outline-success">Results</a>
+                    </div>
+                 <% }else{%>
+                    <div class="col-md-3" style="display: block;">
+                      
+                    </div>
+                  <%}%>
+                    
+                  </div>
+              <% i=1;%>
+             <%}%>
+         <% } if(i==0){%>
+              <h1 class="text-center">
+                  NO CLOSED TENDERS!!
+              </h1>
+          <%}%>
+         </div>
+          </div>
+    </section>
+    </div>
+    
+<!-- <div class="wrap_container cursor-light">
+  <div class="main_container">
+      <div class="side_nav">
+          <div class="my-sticky-nav">
+              <div class="side_menu">
+                  <div id="my_tog" class="my_tog link" onmouseover="my_click();">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                  </div>
+                  <div>
+                  </div>
+                  <nav class="side-nav-menu">
+                      <ul class="nav-menu nav-fill" id="menu">
+                          <li class="nav-item">
+                              <a data-menuanchor="home-banner" class="nav-link link active line" href="/landing">Home </a>
+                          </li>
+                          <li class="nav-item">
+                              <a data-menuanchor="all-products" class="nav-link link line" href="/supplier/tenders">Tender Details</a>
+                          </li>
+                          <li class="nav-item">
+                              <a data-menuanchor="reviews" class="nav-link link line" href="/supplier/tenders/participated">Tenders Participated</a>
+                          </li>
+                          <li class="nav-item">
+                            <a data-menuanchor="reviews" class="nav-link link line" href="/logout">Logout</a>
+                        </li>
+                      </ul>
+                  </nav>
+              </div>
+          </div>
+      </div>
+      <header id="home">
+          <nav class="navbar navbar-light bg-light cursor-light d-md-none">
+              <div class="my_nav_tog d-block d-md-none">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </div>
+          </nav>
+          <div class="broad">
+              <span class="btn-close" id="btn_sideNavClose"><i></i><i></i></span>
+              <nav class="side-nav-menu">
+
+                  <ul class="nav-menu nav-fill">
+                      <li class="nav-item">
+                          <a class="nav-link" href="/landing">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/supplier/tenders">Tender Details</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/supplier/tenders/participated">Tenders Participated</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                  </ul>
+              </nav>
+          </div>
+      </header>
+  </div>
+</div> -->
+
+
+
+
+<%- include("../partials/footer.ejs") %>

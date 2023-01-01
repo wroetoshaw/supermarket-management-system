@@ -1,0 +1,71 @@
+<%- include("../partials/header.ejs") %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">DOPE MARKET</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link  active" href="/supplier/responsess">responses Details</a>
+        <a class="nav-link" href="/supplier/responsess/participated">responsess Participated</a>
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link" href="/logout">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+<div class="container my-5">
+    <h3 class="my-5 text-center">RESULTS OF THE TENDER</h3>
+
+    <%if(check.length==0){%>
+      <h4 class="my-5 text-center" style="color:red" text-center>
+        YOU HAVEN'T PARTICIPATED IN THIS TENDER!
+      </h4>
+    <%}%>
+    <div class="my-5 row " style="border:1px black solid">
+        <div class="col-md-6">
+            <h1 class="my-2">
+             PRODUCT NAME
+            </h1>
+        </div>
+        <div class="col-md-6">
+         <h1 class="my-2">
+           MRP
+         </h1>
+     </div>
+    </div>
+     <% for(x in product){%>
+            <%if(x==0){%>
+                <div class="my-5 row ">
+           <% }else{%>
+                <div class="my-5 row " style="border-top:1px black solid">
+           <% }%>
+                <div class="col-md-6">
+                    <h1 class="my-2">
+                      <%=product[x].p_name%>
+                    </h1>
+                </div>
+                <div class="col-md-6">
+                 <h1 class="my-2">
+                   <%=product[x].p_mrp%>
+                 </h1>
+             </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">
+              <%if(check.length!=0){%>
+                <%  if(product[x].su_id==sid){%>
+                  <h4>CONGRATULATIONS! YOU HAVE WON THE CONTRACT FOR THIS PRODUCT! (COST: <%=product[x].pc_perunit%>)</h4>
+              <%}else{%>
+                  <h4>Sorry! YOU HAVE LOST THE CONTRACT FOR THIS PRODUCT!(COST QUOTED BY THE SUPPLIER WHO HAS GOT IT IS: <%=product[x].pc_perunit%>)</h4>
+              <%}%>
+              <%}else{%>
+                <h4>COST QUOTED BY THE SUPPLIER WHO HAS GOT IT IS: <%=product[x].pc_perunit%></h4>
+              <%}%>
+               </div>
+            </div>
+      <%}%>
+</div>
+
+<%- include("../partials/footer.ejs") %>

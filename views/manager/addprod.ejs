@@ -1,0 +1,82 @@
+<%-include("../partials/header.ejs")%>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">DOPE MARKET</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-link" href="/manager">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-link  active" href="/manager/addproducts">Add Products</a>
+      <a class="nav-link" href="/manager/supdetails">Supplier Details</a>
+      <a class="nav-link" href="/manager/proddetails">Product Details</a>
+      <a class="nav-link" href="/manager/payments">Payments</a>
+      <a class="nav-link" href="/manager/opentender">Open Tender</a>
+      <a class="nav-link" href="/manager/tender/details">Tender Details</a>
+    </div>
+    <div class="navbar-nav">
+      <a class="nav-link" href="/logout">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <h1 class="text-center my-4">ADD Products</h1>
+    <hr>
+    <form action="/manager/addproducts" method="post">
+    <div class="container">
+      <div class="row">
+        <div class="form-group col-md-12">
+            <label for="name">Product Name</label>
+            <input type="text" class="form-control" id="name" name="name">
+          </div>
+          
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+            <label for="qty">Min_Quantity</label>
+            <input type="number" min=1 class="form-control" id="qty" name="qty">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="mrp">Product MRP</label>
+            <input type="number" class="form-control" id="mrp" name="mrp" min=1 step="any">
+          </div>
+      </div>
+    <!-- <div class="row">
+      <div class="form-group col-md-12">
+        <label for="sid">Supplier: </label>
+        <select name="sid" id="sid" class="custom-select">
+           <%if(suppliers[0]){%>
+            <%for(let i=0;i<=suppliers.length-1;i++){ %>
+                <option value="<%=suppliers[i].su_id%>"><%=suppliers[i].su_name%></option>
+            <%}%>
+           <%}else{%>
+            <option value="none">No suppliers Added</option>
+           <%}%>
+        </select>
+      </div>
+    </div> -->
+
+    <div class="text-center">
+      <button class="btn btn-large btn-outline-success">Submit</button>
+    </div>
+  
+    </div>
+  
+    </form>
+    </div>
+  <!-- <hr CLASS="my-5">
+  <div class="container my-5">
+    <h1 class="my-5 text-center">ADD EMPLOYEES THROUGH EXCEL SHEET</h1>
+  <form action="/admin/addemp/multiple" method="post" enctype="multipart/form-data">
+     <div class="form-group">
+       <input type="file" id="file" class="form-control" name="excelfile">
+      <label for="file">File Upload</label>
+    </div>
+    <div class="text-center"><button class="btn btn-outline-danger">Submit</button></div>
+  </form>
+  </div> -->
+
+<%- include("../partials/footer.ejs") %>

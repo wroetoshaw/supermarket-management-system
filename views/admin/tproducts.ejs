@@ -1,0 +1,35 @@
+<%-include("../partials/header.ejs")%>
+
+<%-include("../partials/adminnav.ejs") %>
+
+
+
+<div class="container my-5">
+    <h3 class="text-center my-5">PRODUCTS PURCHSED</h3>
+<div class="divTable paleBlueRows">
+    <div class="divTableHeading">
+    <div class="divTableRow">
+    <div class="divTableHead">SL. NO.</div>
+    <div class="divTableHead">PRODUCT NAME</div>
+    <div class="divTableHead">PRODUCT QUANTITY</div>
+    <div class="divTableHead">TOTAL COST</div>
+    </div>
+    </div>
+    <div class="divTableBody">
+        <%for(let i=0;i<=result.length-1;i++){%>
+    <div class="divTableRow">
+        <div class="divTableCell"><%=i+1%>)</div>
+        <div class="divTableCell"><%=result[i].p_name%></div>
+        <div class="divTableCell"><%=result[i].quantity%></div>
+        <div class="divTableCell"><%=Number(result[i].quantity)*Number(result[i].pc_perunit)%></div>    
+
+    </div>
+    <%}%>
+    </div>
+    </div>
+</div>
+
+
+
+
+<%- include("../partials/footer.ejs") %>

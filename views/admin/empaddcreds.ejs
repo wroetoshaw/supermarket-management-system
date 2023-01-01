@@ -1,0 +1,143 @@
+<%-include("../partials/header.ejs")%>
+
+<%-include("../partials/adminnav.ejs") %>
+
+
+<div class="container">
+    <h1 class="text-center my-4">EMPLOYEE DETAILS</h1>
+    <hr>
+
+    <div class="container">
+      <div class="row">
+        <div class="form-group col-md-6">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="<%=result[0].emp_name%>" readonly>
+          </div>
+          <div class="form-group col-md-6">
+        <label for="mobileno">MobileNo</label>
+        <input type="text" class="form-control" id="mobileno" name="mobileno" value="<%=result[0].emp_mobileno%>" readonly>
+      </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="gender">Gender</label>
+            </div>
+            <select class="custom-select" id="gender" name="gender" disabled>
+              <option >Choose...</option>
+             <% if(result[0].emp_gender==="M"){%>
+                <option selected value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="N">Prefer not to say</option>
+              <%}else if(result[0].emp_gender==="F"){%>
+                <option value="M">Male</option>
+                <option selected value="F">Female</option>
+                <option value="N">Prefer not to say</option>
+              <%}else if(result[0].emp_gender==="N"){%>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option selected value="N">Prefer not to say</option>
+              <%}%>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="department">Department</label>
+            </div>
+            <select class="custom-select" id="department" name="dept" disabled>
+              <option selected>Choose...</option>
+              <!-- <option value="admin">Admin</option> -->
+             <% if(result[0].d_id==1){%>
+                <option selected value="admin">Admin</option>
+                
+              <%}else{%>
+                <option value="admin">Admin</option>
+              <%}%>
+              <%if(result[0].d_id==2){%>
+                <option selected value="managing">Managing</option>
+                
+              <%}else{%>
+                <option value="managing">Managing</option>
+              <%}%>
+              
+             <% if(result[0].d_id==3){%>
+                <option selected value="billing">Billing</option>
+                
+              <%}else{%>
+                <option value="billing">Billing</option>
+              <%}%>
+              <%if(result[0].d_id==4){%>
+                <option selected value="inventory">Inventory</option>
+                
+              <%}else{%>
+                <option value="inventory">Inventory</option>
+              <%}%>
+              <%if(result[0].d_id==5){%>
+                <option selected value="cleaning">Cleaning</option>
+                
+              <%}else{%>
+                <option value="cleaning">Cleaning</option>
+              <%}%>
+             <% if(result[0].d_id==6){%>
+                <option selected value="helper">Helper</option>
+                
+              <%}else{%>
+                <option value="helper">Helper</option>
+              <%}%>
+              <%if(result[0].d_id==6){%>
+                <option selected value="security" >Security</option>
+                
+              <%}else{%>
+                <option value="security">Security</option>
+              <%}%>
+            </select>
+          </div>
+        
+      </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="age">Age</label>
+          <input type="number" class="form-control" id="age" name="age" value="<%=result[0].emp_age%>" readonly>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="age">Salary</label>
+          <input type="number" class="form-control" id="salary" name="salary" value="<%=result[0].emp_salary%>" readonly>
+        </div>
+      </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="address">address:</label>
+        <input type="text" name="address" id="address" class="form-control" value="<%=result[0].emp_address%>" readonly>
+      </div>
+    </div>
+</div>
+</div>
+   
+   <div class="container my-5">
+    <h1 class="text-center my-4">ADD EMPLOYEE CREDENTIALS</h1>
+    <form action="/admin/empdetails/<%=result[0].emp_id%>/addcreds" method="post">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username">
+              </div>
+              <div class="form-group col-md-6">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+          </div>
+          </div>
+        <div class="text-center">
+            <button class="btn btn-large btn-outline-success">Submit</button>
+          </div>
+    </form>
+    
+   </div>
+
+  
+
+
+   <%- include("../partials/footer.ejs") %>

@@ -1,0 +1,43 @@
+<%- include("../partials/header.ejs") %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">DOPE MARKET</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/manager">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/manager/addproducts">Add Products</a>
+        <a class="nav-link" href="/manager/supdetails">Supplier Details</a>
+        <a class="nav-link active" href="/manager/proddetails">Product Details</a>
+      <!-- <a class="nav-link" href="/manager/payments">Payments</a> -->
+      <a class="nav-link" href="/manager/opentender">Open Tender</a>
+      <a class="nav-link" href="/manager/tender/details">Tender Details</a>
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link" href="/logout">Logout</a>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="text-center my-5"><h1>PRODUCT DETAILS</h1></div>
+  <div class="container my-5">
+    <%for(x in products){%>
+      <div class="row">
+        <div class="col-md-4"><%=Number(x)+1%> ) <h5 class="d-inline-block"><%=products[x].p_name%></h5></div>
+        <div class="col-md-2">
+          <a href="/manager/proddetails/<%=products[x].p_id%>/view">VIEW</a>
+        </div>
+        <div class="col-md-2">
+          <a href="/manager/proddetails/<%=products[x].p_id%>/modify">MODIFY</a>
+        </div>
+        <div class="col-md-2">  
+          <form action="/manager/proddetails/<%=products[x].p_id%>/delete?_method=delete" method="post">
+           <button>DELETE</button>
+          </form>
+        </div>  
+        </div>
+    <%}%>
+  </div>
+
+<%- include("../partials/footer.ejs") %>

@@ -1,0 +1,104 @@
+<%-include("../partials/header.ejs")%>
+
+
+<%-include("../partials/inventorynav.ejs")%>
+
+<div id="pagepiling">
+    <section class="section slide1 p-0" id="home-banner">
+    <div class="slider-area" id="slider-area">
+        <div class="bg-overlay bg-green opacity-8"></div>
+        <div class="container">
+    <h2 class="text-center my-5">PRODUCTS</h2>
+        <h5>ADD LOCATION</h5>
+    <%if(products.length!=0){%>
+        <%for(let i=0;i<=products.length-1;i++){%>
+            <form action="/inventory/location" method="POST">
+                <div class="row">
+                    <div class="col-md-2">
+                       <%=i+1%>)  <%=products[i].p_name,products[i].p_id%>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" name="f<%=products[i].p_id%>" placeholder="floor">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" name="r<%=products[i].p_id%>" placeholder="row">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" name="c<%=products[i].p_id%>" placeholder="column">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" name="n<%=products[i].p_id%>" placeholder="rack no.">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-outline-success">ADD</button>
+                    </div>
+    
+                </div>
+            </form>
+        <%}%>
+    <%}else{%>
+        <h2 class="text-center my-5">All products are given locations</h2>
+    <%}%>
+        <hr>
+        
+</div>
+</div>
+</section>
+
+<section class="section slide1 p-0" id="MODIFY">
+    <div class="slider-area" id="slider-area">
+        <div class="bg-overlay bg-green opacity-8"></div>
+        <div class="container">
+        <h5>MODIFY LOCATION</h5>
+        <%for(let i=0;i<=plocation.length-1;i++){%>
+            <form action="/inventory/location?_method=PATCH" method="POST">
+                <div class="row">
+                    <div class="col-md-2">
+                        <%=plocation[i].p_name%>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="<%=i%>" type="number" name="f<%=plocation[i].p_id%>" value="<%=plocation[i].p_floor%>" disabled>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="<%=i%>" type="number" name="r<%=plocation[i].p_id%>" value="<%=plocation[i].p_row%>" disabled>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="<%=i%>" type="number" name="c<%=plocation[i].p_id%>" value="<%=plocation[i].p_column%>" disabled>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="<%=i%>" type="number" name="n<%=plocation[i].p_id%>" value="<%=plocation[i].p_rackno%>" disabled>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-outline-success <%=i%> bu">MODIFY</button>
+                    </div>
+    
+                </div>
+            </form>
+        <%}%>
+
+</div>
+</div>
+</section>
+</div>
+<script>
+    let buttons = document.getElementsByClassName("bu");
+    for(let i=0;i<=buttons.length-1;i++){
+        buttons[i].addEventListener("click",(e)=>{
+            if(e.target.textContent=="MODIFY"){
+            e.preventDefault();
+            let element = e.target;
+            let c= e.target.classList[2];
+            console.log(c);
+            let inputs = document.getElementsByClassName(c);
+            for(let j=0;j<=inputs.length-1;j++){
+              inputs[j].disabled=false;
+            }
+            e.target.textContent="SUBMIT";
+            }
+
+        })
+    }
+</script>
+
+
+<%-include("../partials/footer.ejs")%>

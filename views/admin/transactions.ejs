@@ -1,0 +1,79 @@
+<%-include("../partials/header.ejs")%>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="90">
+
+
+
+<%-include("../partials/adminnav.ejs") %>
+
+<section class="section slide1 p-0" id="home-banner">
+  <div class="slider-area" id="slider-area">
+<div class="container" style="position: absolute;
+top: 10%;
+right: 10%;" >
+  <div class="divTable paleBlueRows">
+    <div class="divTableHeading">
+    <div class="divTableRow">
+    <div class="divTableHead">CUSTOMER NAME</div>
+    <div class="divTableHead">BILLED DATE</div>
+    <div class="divTableHead">BILLED AMOUNT</div>
+    <div class="divTableHead">FINAL AMOUNT</div>
+    <div class="divTableHead">MODE OF PAYMENT</div>
+    <div class="divTableHead">ITEMS PURCHASED</div>
+    </div>
+    </div>
+    <div class="divTableBody">
+      <%if(result.length!=0){%>
+        <%for(let i=0;i<=result.length-1;i++){%>
+    <div class="divTableRow">
+    <div class="divTableCell"><%=i+1%>)</div>
+    <div class="divTableCell"><%=result[i].c_name%></div>
+    <div class="divTableCell"><%=result[i].billed_date.toDateString()%></div>
+    <div class="divTableCell"><%=result[i].billed_amt%></div>
+    <div class="divTableCell"><%=result[i].final_amt%></div>
+    <div class="divTableCell"><%=result[i].mop%></div>
+    <div class="col-md-1"><a class="btn btn-small btn-rounded btn-trans text-capitalize mt-3 mb-5 mb-md-2 mr-3 content1 wow" href="/admin/transactions/<%=result[i].t_id%>">Products</a></div>%>
+  </div>
+  <%}%>
+  <%}else{%>
+  <h4 class="text-center my-5">NO TRANSACTIONS </h4>
+  <%}%>
+  </div>
+  </div>
+</div>
+</div>
+</section>
+
+
+
+
+<!-- <div class="container-fluid my-5">
+    <h3 class="text-center my-5">TRANSACTIONS</h3>
+    <div class="row my-5">
+        <div class="col-md-1">SL.No.</div>
+                 <div class="col-md-2">CUSTOMER NAME</div>
+                 <div class="col-md-2">BILLED DATE</div>
+                 <div class="col-md-2">BILLED AMOUNT</div>
+                 <div class="col-md-2">FINAL AMOUNT</div>
+                 <div class="col-md-1">MODE OF PAYMENT</div>
+                 <div class="col-md-1">ITEMS PURCHASED</div>
+    </div>
+    <%if(result.length!=0){%>
+        <%for(let i=0;i<=result.length-1;i++){%>
+             <div class="row">
+                 <div class="col-md-1"><%=i+1%>)</div>
+                 <div class="col-md-2"><%=result[i].c_name%></div>
+                 <div class="col-md-2"><%=result[i].billed_date.toDateString()%></div>
+                 <div class="col-md-2"><%=result[i].billed_amt%></div>
+                 <div class="col-md-2"><%=result[i].final_amt%></div>
+                 <div class="col-md-1"><%=result[i].mop%></div>
+                 <div class="col-md-1"><a class="btn btn-outline-success" href="/admin/transactions/<%=result[i].t_id%>">Products</a></div>%>
+
+             </div>
+            <%}%>
+    <%}else{%>
+        <h4 class="text-center my-5">NO TRANSACTIONS </h4>
+    <%}%>
+</div> -->
+
+<%- include("../partials/footer.ejs") %>

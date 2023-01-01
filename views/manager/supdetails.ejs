@@ -1,0 +1,116 @@
+<%- include("../partials/header.ejs") %>
+
+<!-- Nav starts -->
+<div class="wrap_container cursor-light">
+    <div class="main_container">
+        <div class="side_nav">
+            <div class="my-sticky-nav">
+                <div class="side_menu">
+                    <div id="my_tog" class="my_tog link" onmouseover="my_click();">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div>
+                    </div>
+                    <!-- Sticky Nav -->
+                    <nav class="side-nav-menu">
+                        <ul class="nav-menu nav-fill" id="menu">
+                            <li class="nav-item">
+                                <a data-menuanchor="home-banner" class="nav-link link active line"  href="/admin">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a data-menuanchor="all-products" class="nav-link link line" href="/manager/addproducts">Add Products</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a data-menuanchor="reviews" class="nav-link link line" href="/admin/purchaseorder">Purchase  Details</a>
+                            </li> -->
+                            <li class="nav-item">
+                              <a data-menuanchor="reviews" class="nav-link link line" href="/manager/supdetails">Supplier Details</a>
+                          </li>
+                          <li class="nav-item">
+                            <a data-menuanchor="reviews" class="nav-link link line" href="/manager/proddetails">Product Details</a>
+                        </li>
+                        <li class="nav-item">
+                          <a data-menuanchor="reviews" class="nav-link link line" href="/manager/opentender">Open Tender</a>
+                      </li>
+                      <li class="nav-item">
+                        <a data-menuanchor="reviews" class="nav-link link line" href="/manager/tender/details">Tender Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-menuanchor="reviews" class="nav-link link line" href="/logout">Logout</a>
+                    </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Nav-Bar -->
+        <header id="home">
+            <nav class="navbar navbar-light bg-light cursor-light d-md-none">
+                <div class="my_nav_tog d-block d-md-none">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+            <div class="broad">
+                <span class="btn-close" id="btn_sideNavClose"><i></i><i></i></span>
+                <nav class="side-nav-menu">
+  
+                    <ul class="nav-menu nav-fill">
+                      <li class="nav-item">
+                        <a class="nav-link "  href="/landing">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/manager/addproducts">Add Products</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link " href="/admin/purchaseorder">Purchase  Details</a>
+                    </li> -->
+                    <li class="nav-item">
+                      <a class="nav-link active" href="/manager/supdetails">Supplier Details</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="/manager/proddetails">Product Details</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="/manager/opentender">Open Tender</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link "  href="/manager/tender/details">Tender Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/logout">Logout</a>
+            </li>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </div>
+  </div>
+
+<!--nav end-->
+
+  <div class="text-center my-5"><h1>SUPPLIER DETAILS</h1></div>
+  <div class="container my-5">
+    <%for(x in suppliers){%>
+      <div class="row">
+        <div class="col-md-4"><%=Number(x)+1%> ) <h5 class="d-inline-block"><%=suppliers[x].su_name%></h5></div>
+        <div class="col-md-2">
+          <a href="/manager/supdetails/<%=suppliers[x].su_id%>/view">VIEW</a>
+        </div>
+        <div class="col-md-2">
+          <a href="/manager/supdetails/<%=suppliers[x].su_id%>/modify">MODIFY</a>
+        </div>
+        <div class="col-md-2">  
+          <form action="/manager/supdetails/<%=suppliers[x].su_id%>/delete?_method=delete" method="post">
+           <button>DELETE</button>
+          </form>
+        </div>  
+        </div>
+    <%}%>
+  </div>
+
+<%- include("../partials/footer.ejs") %>

@@ -1,0 +1,102 @@
+<%- include("../partials/header.ejs") %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">DOPE MARKET</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/manager">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/manager/addproducts">Add Products</a>
+        <a class="nav-link" href="/manager/supdetails">Supplier Details</a>
+        <a class="nav-link" href="/manager/proddetails">Product Details</a>
+        <!-- <a class="nav-link" href="/manager/payments">Payments</a> -->
+        <a class="nav-link" href="/manager/opentender">Open Tender</a>
+        <a class="nav-link  active" href="/manager/tender/details">Tender Details</a>
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link" href="/logout">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+   <h1 class="text-center my-5">UPCOMING TENDERS!!!</h1>
+   <%let i=0;%>
+   <%for(let x in tenders){%>
+    <%  if(tenders[x].t_status=="upcoming"){%>
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-between">
+              <div>
+                  <h4><%=tenders[x].t_name%></h4>
+              </div>
+              <div>
+                  <a href="/manager/tender/<%=tenders[x].t_id%>/details" class="btn btn-outline-success">DETAILS</a>
+              </div>
+            </div>
+        </div>
+        <%i=1;%>
+      <%}%>
+  <% } if(i==0){%>
+       <h1 class="text-center">
+           NO UPCOMING TENDERS!!
+       </h1>
+   <%}%>
+  </div>
+  <hr>
+  <div class="container my-5">
+    <h1 class="text-center my-5">ONGOING TENDERS!!!</h1>
+    <%i=0;%>
+    <%for(let x in tenders){%>
+     <%  if(tenders[x].t_status=="open"){%>
+         <div class="row">
+             <div class="col-md-12 d-flex justify-content-between">
+               <div>
+                   <h4><%=tenders[x].t_name%></h4>
+               </div>
+               <div>
+                   <a href="/manager/tender/<%=tenders[x].t_id%>/details" class="btn btn-outline-success">DETAILS</a>
+               </div>
+             </div>
+         </div>
+         <%i=1;%>
+       <%}%>
+   <% } if(i==0){%>
+        <h1 class="text-center">
+            NO ONGOING TENDERS!!
+        </h1>
+    <%}%>
+   </div>
+<hr>
+<div class="container my-5">
+    <h1 class="text-center my-5">CLOSED TENDERS!!!</h1>
+    <%i=0;%>
+    <%for(let x in tenders){%>
+     <%  if(tenders[x].t_status=="closed" || tenders[x].t_status=="selected"){%>
+         <div class="row">
+             <div class="col-md-12 d-flex justify-content-between">
+               <div>
+                   <h4><%=tenders[x].t_name%></h4>
+               </div>
+               <div>
+                <a href="/manager/tender/<%=tenders[x].t_id%>/details" class="btn btn-outline-success">DETAILS</a>
+            </div>
+               <div>
+                   <a href="/manager/tender/<%=tenders[x].t_id%>/results" class="btn btn-outline-primary">Results</a>
+               </div>
+             </div>
+         </div>
+        <% i=1;%>
+       <%}%>
+   <% } if(i==0){%>
+        <h1 class="text-center">
+            NO CLOSED TENDERS!!
+        </h1>
+    <%}%>
+   </div>
+<hr>
+
+
+
+  
+  <%- include("../partials/footer.ejs") %>
