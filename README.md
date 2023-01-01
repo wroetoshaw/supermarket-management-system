@@ -59,7 +59,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Screen Shot][product-screenshot]]
+![Product screen shot](https://github.com/wroetoshaw/supermarket-management-system/blob/main/images/project.jpg)
 
 An inventory control system that keeps a record of transactions at a market and manages the
 inventory. With the combination of the supermarket management system and the modern Internet
@@ -71,8 +71,8 @@ techniques, supermarket management can be informatized and modernized.
 
 ### Built With
 
-* [![Node][Node.js]]
-* [![EJs][EJs.js]]
+* ![Node][Node.js]
+* ![EJs][EJs.js]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
 
@@ -124,18 +124,6 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- CONTACT -->
