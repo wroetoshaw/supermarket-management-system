@@ -14,10 +14,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/wroetoshaw/supermarket-management-system">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
 <h3 align="center">SuperMarket Management System</h3>
 
   <p align="center">
@@ -75,10 +71,10 @@ techniques, supermarket management can be informatized and modernized.
 
 ### Built With
 
-* ![Node][Node.js]
-* ![EJs][EJs.js]]
-* ![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* ![JQuery][JQuery.com]][JQuery-url]
+* [![Node][Node.js]]
+* [![EJs][EJs.js]]
+* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -100,7 +96,7 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at 
 2. Clone the repo
    ```sh
    git clone [https://github.com/wroetoshaw/supermarket-management-system.git]
@@ -163,7 +159,7 @@ Project Link: [https://github.com/wroetoshaw/supermarket-management-system](http
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/gopagonikarthik/
-[product-screenshot]: images/project.jpg
+[product-screenshot]: https://github.com/wroetoshaw/supermarket-management-system/blob/main/images/project.jpg
 [Node.js]:https://img.shields.io/badge/node.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [EJs.js]:https://img.shields.io/badge/ejs-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
